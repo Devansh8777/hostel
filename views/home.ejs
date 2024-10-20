@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+       
+</head>
+
+<body>
+    <div class="container">
+    <h1>All Students</h1>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Roll No.</th>
+            <th>Room No.</th>
+            <th>Hostel number</th>
+            <th>More Info.</th>
+            <th>Update Room No.</th>
+            <th>Delete</th>
+        </tr>
+        <% data.forEach(element=> { %>
+            <tr>
+                <td>
+                    <%= element.name %>
+                </td>
+                <td>
+                    <%= element.rollNo %>
+                </td>
+                <td>
+                    <%= element.roomNo %>
+                </td>
+                <td>
+                    <%= element.hostelName %>
+                </td>
+                <td>
+                    <form class="student-form" action="/information" method="post">
+                        <input type="number" style="display: none;" 
+                            name="rollNo" value="<%= element.rollNo %>">
+                        <button class ="btn" type="submit">More Info.</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="student-form" action="/update" method="post">
+                        <input type="number" style="display: none;" 
+                            name="rollNo" value="<%= element.rollNo %>">
+                        <input type="number" name="newroomno">
+                        <button class="btn" type="submit">Update</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="student-form" action="/delete" method="post">
+                        <input type="number" style="display: none;" 
+                            name="rollNo" value="<%= element.rollNo %>">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+
+    <h1>Add Student</h1>
+
+    <form class="student-form" action="/" method="post">
+        <input class="form-input" type="text" placeholder="Name" name="name">
+        <input class="form-input" type="number" placeholder="Roll No." name="rollNo">
+        <input class="form-input" type="date" placeholder="DOB" name="dateOfBirth">
+        <input class="form-input" type="text" placeholder="City" name="city">
+        <input class="form-input" type="number" placeholder="Number" name="number">
+        <input class="form-input" type="number" placeholder="Father's Number" 
+            name="fatherNumber">
+        <input class="form-input" type="number" placeholder="Room No." name="roomNo">
+        <input class="form-input" type="text" placeholder="Hostel Name" name="hostelName">
+        <button class="btn" type="submit">Add</button>
+    </form>
+</div>
+</body>
+
+</html>
